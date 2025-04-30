@@ -4,5 +4,5 @@ namespace Movies.Search.Api.Services;
 
 public interface IMovieService
 {
-    Task<IEnumerable<Movie>> GetMoviesAsync(string? searchTerm, int limit);
+    Task<List<Movie>> GetMoviesAsync(string? searchTerm = null, int limit = 10);
 }

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.AI;
 using MongoDB.Driver;
 using Movies.Search.Api.Services;
 
@@ -10,6 +11,9 @@ builder.Services.AddCors();
 builder.Services.AddSingleton<IMongoClient>(sp =>
     new MongoClient(builder.Configuration.GetConnectionString("MongoDb")));
 builder.Services.AddScoped<IMovieService, MovieService>();
+
+builder.Services.AddEmbeddingGenerator(
+    new OllamaEmbeddingGenerator(builder.Configuration["Ollama:Url"]!, "mxbai-embed-large"));
 
 var app = builder.Build();
 
