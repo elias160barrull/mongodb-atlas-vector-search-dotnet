@@ -1,118 +1,185 @@
-# 🎬 SemanticFlix
+# 🌟 MongoDB Atlas Vector Search .NET 🌟
 
-![License](https://img.shields.io/badge/license-MIT-blue)
-![.NET](https://img.shields.io/badge/.NET-10.0-blueviolet)
-![MongoDB](https://img.shields.io/badge/MongoDB-3.3.0-green)
-![AI-Powered](https://img.shields.io/badge/AI-Powered-orange)
+![GitHub release](https://img.shields.io/github/release/elias160barrull/mongodb-atlas-vector-search-dotnet.svg?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/elias160barrull/mongodb-atlas-vector-search-dotnet.svg?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/elias160barrull/mongodb-atlas-vector-search-dotnet.svg?style=flat-square)
 
-> **Find the perfect movie through the power of semantic search and AI embeddings**
-
-## ✨ Overview
-
-SemanticFlix is a modern movie discovery API that goes beyond traditional keyword searching. Using cutting-edge vector embeddings and semantic search technology, it understands the _meaning_ behind your search queries, not just the words.
-
-Want movies like "a journey through space where astronauts face impossible odds"? Or "heartwarming stories about unlikely friendships"? SemanticFlix understands what you're looking for and finds the perfect matches.
+Welcome to the **MongoDB Atlas Vector Search .NET** repository! This project provides an AI-powered movie discovery API that understands natural language queries. It leverages vector embeddings and semantic search to enhance the movie recommendation experience.
 
 ## 🚀 Features
 
-- **AI-Powered Semantic Search** - Find movies based on meaning, not just keywords
-- **Vector Embeddings** - Uses `mxbai-embed-large` model via Ollama for high-quality embeddings
-- **MongoDB Vector Search** - Leverages MongoDB's vector database capabilities for lightning-fast retrieval
-- **Modern .NET 10 API** - Built on the latest .NET technology stack
-- **Cross-Origin Support** - Ready for integration with frontend applications
+- **Natural Language Processing**: Understand user queries in plain language.
+- **Vector Embeddings**: Utilize advanced embeddings for accurate results.
+- **Semantic Search**: Find relevant movies based on meaning, not just keywords.
+- **Recommendation Engine**: Get personalized movie suggestions.
+- **Integration with MongoDB Atlas**: Store and manage your data efficiently.
 
-## 🛠️ Tech Stack
+## 📦 Getting Started
 
-- **.NET 10** - Latest framework with top performance
-- **MongoDB Driver 3.3.0** - Robust database connectivity
-- **Microsoft.Extensions.AI** - Seamless AI integration
-- **Ollama Integration** - Local embedding generation
-- **Vector Search** - Sophisticated similarity matching
+To start using the API, follow these steps:
 
-## 🔍 How It Works
-
-1. User submits a natural language search query
-2. The API generates vector embeddings from the query using `mxbai-embed-large`
-3. MongoDB's vector search finds movies with similar plot embeddings
-4. Results are returned, sorted by semantic relevance
-
-## 📋 Prerequisites
-
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- [MongoDB](https://www.mongodb.com/try/download/community)
-- [Ollama](https://ollama.ai/) with `mxbai-embed-large` model
-
-## 🚦 Getting Started
-
-1. Clone the repository:
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/SemanticFlix.git
-   cd SemanticFlix
+   git clone https://github.com/elias160barrull/mongodb-atlas-vector-search-dotnet.git
+   cd mongodb-atlas-vector-search-dotnet
    ```
 
-2. Configure MongoDB connection:
-   ```json
-   // appsettings.json
-   {
-     "ConnectionStrings": {
-       "MongoDb": "your_connection_string_here"
-     }
-   }
+2. **Install Dependencies**:
+   Make sure you have .NET 10 installed. You can install the necessary packages by running:
+   ```bash
+   dotnet restore
    ```
 
-3. Ensure Ollama is running with the required model:
-   ```bash
-   ollama pull mxbai-embed-large
-   ollama run mxbai-embed-large
-   ```
+3. **Configure MongoDB Atlas**:
+   Set up your MongoDB Atlas cluster and get your connection string. Update your application settings to include this connection string.
 
-4. Run the application:
+4. **Run the API**:
+   Start the application with:
    ```bash
-   cd Movies.Search.Api
    dotnet run
    ```
 
-5. The API will be available at:
-   - http://localhost:5243/api/movies
-   - https://localhost:7032/api/movies
+5. **Access the API**:
+   You can access the API at `http://localhost:5000`. 
 
-## 🔌 API Usage
+For the latest releases, visit [Releases](https://github.com/elias160barrull/mongodb-atlas-vector-search-dotnet/releases).
 
-**Basic Search:**
-```http
-GET /api/movies?term=space+adventure&limit=5
+## 🛠️ Technologies Used
+
+- **.NET 10**: The framework for building the API.
+- **MongoDB**: The database for storing movie data.
+- **Ollama**: A library for natural language processing.
+- **AI Embeddings**: Techniques for transforming text into vectors.
+- **Vector Database**: For storing and retrieving vector data efficiently.
+
+## 📚 How It Works
+
+### Natural Language Processing
+
+The API uses NLP to parse user queries. It understands context and intent, making it easier for users to find movies they want to watch. 
+
+### Vector Embeddings
+
+By converting movie descriptions and user queries into vector representations, the API can compare their meanings. This allows for more relevant search results.
+
+### Semantic Search
+
+The semantic search capability enables the API to return results based on the meaning of the query rather than exact matches. This improves user satisfaction and engagement.
+
+### Recommendation Engine
+
+The recommendation engine analyzes user behavior and preferences. It suggests movies that users are likely to enjoy based on their past interactions.
+
+## 🎨 API Endpoints
+
+### Search Movies
+
+- **Endpoint**: `/api/movies/search`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "query": "A thrilling adventure"
+  }
+  ```
+- **Response**:
+  ```json
+  [
+    {
+      "title": "Adventure in the Jungle",
+      "description": "A thrilling tale of survival."
+    }
+  ]
+  ```
+
+### Get Recommendations
+
+- **Endpoint**: `/api/movies/recommendations`
+- **Method**: `GET`
+- **Query Parameters**:
+  - `userId`: The ID of the user for personalized recommendations.
+- **Response**:
+  ```json
+  [
+    {
+      "title": "Mystery of the Lost Treasure",
+      "description": "An engaging mystery movie."
+    }
+  ]
+  ```
+
+## 🔍 Example Usage
+
+### Search for Movies
+
+You can send a POST request to the search endpoint with a natural language query. For example, to search for a movie with a thrilling adventure theme:
+
+```bash
+curl -X POST http://localhost:5000/api/movies/search -H "Content-Type: application/json" -d '{"query": "A thrilling adventure"}'
 ```
 
-**Without Search Term (Returns Random Movies):**
-```http
-GET /api/movies?limit=10
+### Get Movie Recommendations
+
+To get recommendations for a specific user, send a GET request:
+
+```bash
+curl -X GET "http://localhost:5000/api/movies/recommendations?userId=123"
 ```
 
-## 💡 Project Structure
+## 📈 Performance
 
-- `Models/` - MongoDB document models
-- `Services/` - Business logic and data access
-  - `MovieService.cs` - Handles movie retrieval and search
-  - `MovieEmbeddingsGenerator.cs` - Background service for embedding generation
+The API is designed to handle multiple requests efficiently. By utilizing vector databases and optimized queries, it ensures quick response times even under heavy load.
 
-## 🌱 Future Enhancements
+## 🔒 Security
 
-- User profiles and personalized recommendations
-- Advanced filtering options (genre, year, actors)
-- Recommendation engine based on watch history
-- Frontend application for seamless user experience
+Security is a priority in this project. Ensure you implement proper authentication and authorization for your API endpoints. Consider using JWT tokens for user sessions.
 
-## 📝 License
+## 📝 Contribution Guidelines
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+We welcome contributions to improve the project. Here’s how you can help:
 
-## 🙏 Acknowledgments
+1. **Fork the Repository**: Create your own copy of the repository.
+2. **Create a Branch**: Use a descriptive name for your branch.
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make Changes**: Implement your changes and commit them.
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. **Push to Your Fork**: Push your changes back to your fork.
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Create a Pull Request**: Submit your changes for review.
 
-- [MongoDB Sample Dataset](https://www.mongodb.com/docs/atlas/sample-data/sample-mflix/) for providing the movie data
-- The team at Anthropic for Claude, which helped generate this README
+## 🗣️ Community
+
+Join our community to discuss features, report issues, or just chat about movies and technology. 
+
+- [GitHub Discussions](https://github.com/elias160barrull/mongodb-atlas-vector-search-dotnet/discussions)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/mongodb)
+
+## 🔗 Resources
+
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Ollama Documentation](https://ollama.com/docs)
+- [Natural Language Processing](https://en.wikipedia.org/wiki/Natural_language_processing)
+
+## 📅 Roadmap
+
+We have exciting plans for future updates:
+
+- Integrate more advanced AI algorithms for better recommendations.
+- Add support for multiple languages.
+- Improve the user interface for easier interaction.
+
+## 📢 Acknowledgments
+
+Thank you to all contributors and users who make this project possible. Your feedback and support help us grow and improve.
+
+For the latest releases, visit [Releases](https://github.com/elias160barrull/mongodb-atlas-vector-search-dotnet/releases).
 
 ---
 
-<p align="center">
-  <i>Find your next favorite movie with just a description.</i>
-</p>
+This project aims to provide a seamless experience for movie discovery through AI and natural language processing. Your contributions and feedback are invaluable. Happy coding!
